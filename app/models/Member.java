@@ -3,8 +3,8 @@ package models;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-import play.db.ebean.*;
-import play.data.validation.*;
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
 
 @Entity
 public class Member extends Model{
@@ -20,6 +20,4 @@ public class Member extends Model{
 	public static Finder<Long, Member > find = new Finder<Long, Member>(
 			Long.class, Member.class
 			);
-
-
 }
