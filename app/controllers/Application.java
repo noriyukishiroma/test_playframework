@@ -1,9 +1,12 @@
 package controllers;
 
-import play.db.DB;
+//import models.Member;
+//import play.db.DB;
+import models.Member;
 import play.mvc.Controller;
 import play.mvc.Result;
 import views.html.index;
+
 
 public class Application extends Controller {
 
@@ -11,30 +14,22 @@ public class Application extends Controller {
 		return ok(index.render("Your new application is ready."));
 	}
 
-	/**
-    Connection connection = DB.getConnection();
-    try {
-        PreparedStatement sql = connection.preparedStatement("select * from member");
-        ResultSet rs = sql.executeQuery();
-        while (rs.next()) {
-            System.out.println(rs.getString("name") + ":" + rs.getString("email"));
-        }
-    } catch (SQLException e) {
-        e.printStatckTrace();
-    }
-	 **/
-
-
-	Connection connection = DB.getConnection();
-	{
+	public static Result print_member(){
 		Member member = new Member();
 		member.name = "hoge";
 		member.email = "hoge@example.com";
 		member.save();
+		return ok(member.id + ":" + member.name + ":" + member.email);
+
+
+/**
 		//メンバー一覧取得してコンソールに出力
 		List<Member> members = Member.find.all();
-		for (Member member : members) {
+		for (Member member : members ) {
 			System.out.println(member.id + ":" + member.name + ":" + member.email);
 		}
+**/
+
 	}
+
 }
